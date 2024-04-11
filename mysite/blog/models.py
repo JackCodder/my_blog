@@ -9,5 +9,11 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-publish'] # данный атрибут сообщает что сортировка будет по полю publish (убыв. порядок -)
+        indexes = [
+            models.Index(fields=['-publish']) #Добавление индекса базы данных
+        ]
+
     def __str__(self):
         return self.title
